@@ -1,0 +1,33 @@
+{
+  "fields": [
+    {
+      "name": "text",
+      "type": "string"
+    },
+    {
+      "name": "offensive_level",
+      "type": "categorical",
+      "values": [
+        "mild",
+        "strong"
+      ]
+    },
+    {
+      "name": "emotion",
+      "type": "categorical",
+      "values": [
+        "anger",
+        "sadness",
+        "sarcasm",
+        "fear",
+        "joy",
+        "neutral"
+      ]
+    },
+    {
+      "name": "neutral_rewrite",
+      "type": "string"
+    }
+  ],
+  "instructions": "For each “text”, write a non-offensive rewrite that preserves the author’s emotional tone without adding new content."
+}

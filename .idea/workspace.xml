@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2041ff45-61b3-4b5f-b1b6-8499554a18a8" name="Changes" comment="Extract offensive examples" />
+    <list default="true" id="2041ff45-61b3-4b5f-b1b6-8499554a18a8" name="Changes" comment="Clean &amp; preprocess text" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,6 +14,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
+        <option value="package.json" />
       </list>
     </option>
   </component>
@@ -70,7 +71,7 @@
       <option name="presentableId" value="Default" />
       <updated>1746994810956</updated>
       <workItem from="1746994811950" duration="881000" />
-      <workItem from="1747046201221" duration="2136000" />
+      <workItem from="1747046201221" duration="3035000" />
     </task>
     <task id="LOCAL-00001" summary="Extract offensive examples">
       <option name="closed" value="true" />
@@ -104,7 +105,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747061675552</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Clean &amp; preprocess text">
+      <option name="closed" value="true" />
+      <created>1747061763614</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1747061763614</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -113,6 +122,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Merge &amp; dedupe raw corpus" />
     <MESSAGE value="Extract offensive examples" />
-    <option name="LAST_COMMIT_MESSAGE" value="Extract offensive examples" />
+    <MESSAGE value="Clean &amp; preprocess text" />
+    <option name="LAST_COMMIT_MESSAGE" value="Clean &amp; preprocess text" />
   </component>
 </project>
