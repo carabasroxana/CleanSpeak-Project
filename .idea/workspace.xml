@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2041ff45-61b3-4b5f-b1b6-8499554a18a8" name="Changes" comment="Extract offensive examples">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="2041ff45-61b3-4b5f-b1b6-8499554a18a8" name="Changes" comment="Extract offensive examples" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -22,18 +20,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "carabasroxana"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;carabasroxana&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/carabasroxana/CleanSpeak-Project.git",
-    "accountId": "7d2a75b2-9d26-4593-9058-6b0e3871371b"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/carabasroxana/CleanSpeak-Project.git&quot;,
+    &quot;accountId&quot;: &quot;7d2a75b2-9d26-4593-9058-6b0e3871371b&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
 }</component>
@@ -72,7 +70,7 @@
       <option name="presentableId" value="Default" />
       <updated>1746994810956</updated>
       <workItem from="1746994811950" duration="881000" />
-      <workItem from="1747046201221" duration="1187000" />
+      <workItem from="1747046201221" duration="1493000" />
     </task>
     <task id="LOCAL-00001" summary="Extract offensive examples">
       <option name="closed" value="true" />
@@ -82,7 +80,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747046378283</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Extract offensive examples">
+      <option name="closed" value="true" />
+      <created>1747060886268</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1747060886268</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
