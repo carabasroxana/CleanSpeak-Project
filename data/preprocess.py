@@ -1,55 +1,63 @@
-import pandas as pd
+import json
+import re
 from pathlib import Path
+from langdetect import detect
+from typing import List, Dict
 
-
-def load_jigsaw(path: str) -> pd.DataFrame:
+def load_raw_texts(input_path: str) -> List[str]:
     """
-    Load the Jigsaw Toxic Comment dataset and filter toxic comments.
+    Load raw offensive texts from a JSONL file.
     """
-    df = pd.read_csv(path)
-    toxic = df[df["toxic"] == 1][["comment_text"]].rename(columns={"comment_text": "text"})
-    return toxic
+    lines = Path(input_path).read_text().splitlines()
+    return [json.loads(line)["text"] for line in lines]
 
-
-def load_olid(path: str) -> pd.DataFrame:
+def clean_text(text: str) -> str:
     """
-    Load the OLID dataset and filter offensive tweets.
+    Remove URLs, mentions, and extra whitespace.
     """
-    df = pd.read_csv(path, sep="\t")
-    offensive = df[df["subtask_a"] == "OFF"][["tweet"]].rename(columns={"tweet": "text"})
-    return offensive
+    text = re.sub(r"http\S+", "", text)
+    text = re.sub(r"@\w+", "", text)
+    return re.sub(r"\s+", " ", text).strip()
 
-
-def load_davidson(path: str) -> pd.DataFrame:
+def is_valid(text: str, min_words: int = 3) -> bool:
     """
-    Load the Davidson et al. dataset and filter hate or offensive labels.
+    Check if text has a minimum word count and is English.
     """
-    df = pd.read_csv(path)
-    # label 1 = hate speech, 2 = offensive language
-    off_d = df[df["label"].isin([1, 2])][["tweet"]].rename(columns={"tweet": "text"})
-    return off_d
+    if len(text.split()) < min_words:
+        return False
+    try:
+        return detect(text) == "en"
+    except Exception:
+        return False
 
-
-def merge_and_save(output_path: str, *dfs: pd.DataFrame):
+def filter_texts(texts: List[str]) -> List[Dict[str, str]]:
     """
-    Concatenate given DataFrames, dedupe on 'text', and save as JSONL.
+    Clean and filter a list of texts, returning records ready for annotation.
     """
-    combined = pd.concat(dfs, ignore_index=True)
-    unique = combined.drop_duplicates(subset=["text"])
+    cleaned = []
+    for t in texts:
+        t_clean = clean_text(t)
+        if is_valid(t_clean):
+            cleaned.append({"text": t_clean})
+    return cleaned
 
+def save_jsonl(records: List[Dict[str, str]], output_path: str) -> None:
+    """
+    Save a list of dictionaries to a JSONL file, ensuring directory exists.
+    """
     Path(output_path).parent.mkdir(parents=True, exist_ok=True)
-    unique.to_json(output_path, orient="records", lines=True)
-    print(f"Saved {len(unique)} unique offensive texts to {output_path!r}")
+    with Path(output_path).open("w", encoding="utf-8") as f:
+        for rec in records:
+            f.write(json.dumps(rec, ensure_ascii=False) + "\n")
+    print(f"✔️ Saved {len(records)} records to {output_path!r}")
 
+def main():
+    input_path = "data/raw_offensive.jsonl"
+    output_path = "data/for_annotation.jsonl"
+
+    texts = load_raw_texts(input_path)
+    records = filter_texts(texts)
+    save_jsonl(records, output_path)
 
 if __name__ == "__main__":
-    jigsaw_path = "data/train.csv"
-    olid_path = "data/olid-training-v1.0.tsv"
-    davidson_path = "data/davidson/dataset.csv"
-    output_path = "data/raw_offensive.jsonl"
-
-    jigsaw_df = load_jigsaw(jigsaw_path)
-    olid_df = load_olid(olid_path)
-    davidson_df = load_davidson(davidson_path)
-
-    merge_and_save(output_path, jigsaw_df, olid_df, davidson_df)
+    main()
