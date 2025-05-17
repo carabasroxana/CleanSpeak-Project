@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2041ff45-61b3-4b5f-b1b6-8499554a18a8" name="Changes" comment="Requirements installations">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="2041ff45-61b3-4b5f-b1b6-8499554a18a8" name="Changes" comment="Changing label tag to key tag&#10;Added davidson corpus&#10;Resolving a small bug">
+      <change afterPath="$PROJECT_DIR$/data/dataset.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/davidson/data/labeled_data.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/davidson" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/data/extract_offensive.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/extract_offensive.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/preprocess.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/preprocess.py" afterDir="false" />
     </list>
@@ -88,7 +88,7 @@
       <workItem from="1747046201221" duration="4083000" />
       <workItem from="1747338371230" duration="1143000" />
       <workItem from="1747379586109" duration="2845000" />
-      <workItem from="1747493056716" duration="5317000" />
+      <workItem from="1747493056716" duration="6292000" />
     </task>
     <task id="LOCAL-00001" summary="Extract offensive examples">
       <option name="closed" value="true" />
@@ -210,7 +210,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747494959947</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Changing label tag to key tag&#10;Added davidson corpus&#10;Resolving a small bug">
+      <option name="closed" value="true" />
+      <created>1747501493494</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1747501493494</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -230,7 +238,8 @@
     <MESSAGE value="Evaluation metrics" />
     <MESSAGE value="Serve demo API" />
     <MESSAGE value="Requirements installations" />
-    <option name="LAST_COMMIT_MESSAGE" value="Requirements installations" />
+    <MESSAGE value="Changing label tag to key tag&#10;Added davidson corpus&#10;Resolving a small bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changing label tag to key tag&#10;Added davidson corpus&#10;Resolving a small bug" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/CleanSpeak$evaluate_metrics.coverage" NAME="evaluate_metrics Coverage Results" MODIFIED="1747494979696" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

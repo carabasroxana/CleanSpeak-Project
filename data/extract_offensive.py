@@ -11,26 +11,18 @@ from typing import List
 #     return toxic.rename(columns={'comment_text': 'text'})
 
 def load_olid(path: str) -> pd.DataFrame:
-    """
-    Load OLID dataset and return offensive tweets as 'text'.
-    """
-    df = pd.read_csv(path, sep="\t", usecols=['tweet', 'subtask_a'])
-    offensive = df.loc[df['subtask_a'] == 'OFF', ['tweet']]
-    return offensive.rename(columns={'tweet': 'text'})
+    """Load OLID dataset…"""
+    df = pd.read_csv(path, sep="\t")
+    offensive = df[df["subtask_a"] == "OFF"][["tweet"]]
+    return offensive.rename(columns={"tweet": "text"})
 
 def load_davidson(path: str) -> pd.DataFrame:
     """
-    Load Davidson et al. dataset and return hate/offensive examples as 'text'.
-    The dataset uses a 'class' column:
-      0 = hate speech, 1 = offensive language, 2 = neither.
-    We keep classes 0 and 1.
+    Load the moved Davidson CSV (class 0 = hate, 1 = offensive).
     """
     df = pd.read_csv(path)
-    print("Davidson columns:", df.columns.tolist())
-    print("Class value counts:\n", df['class'].value_counts())
-    # filter rows where class is 0 (hate) or 1 (offensive)
-    subset = df.loc[df['class'].isin([0, 1]), ['tweet']]
-    return subset.rename(columns={'tweet': 'text'})
+    subset = df[df["class"].isin([0, 1])][["tweet"]]
+    return subset.rename(columns={"tweet": "text"})
 
 
 def merge_datasets(dfs: List[pd.DataFrame]) -> pd.DataFrame:
@@ -56,8 +48,8 @@ def main():
     output_path   = 'data/raw_offensive.jsonl'
 
     # jigsaw_df   = load_jigsaw(jigsaw_path)
-    olid_df     = load_olid(olid_path)
-    davidson_df = load_davidson(davidson_path)
+    olid_df = load_olid("data/olid-training-v1.0.tsv")
+    davidson_df = load_davidson("data/dataset.csv")
 
     merged_df = merge_datasets([olid_df, davidson_df])
 
