@@ -1,0 +1,8 @@
+torch>=1.13           # or the latest compatible with your CUDA/CPU
+transformers>=4.25
+sentencepiece         # for T5Tokenizer
+datasets              # for load_metric (or use evaluate)
+evaluate              # if you prefer the newer HF evaluate package
+flask                 # for serve.py
+langdetect            # for language filtering
+praw                  # if you ever return to Reddit scraping
