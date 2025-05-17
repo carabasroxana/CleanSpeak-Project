@@ -2,13 +2,13 @@ import pandas as pd
 from pathlib import Path
 from typing import List
 
-def load_jigsaw(path: str) -> pd.DataFrame:
-    """
-    Load Jigsaw Toxic Comment dataset and return toxic comments as 'text'.
-    """
-    df = pd.read_csv(path)
-    toxic = df.loc[df['toxic'] == 1, ['comment_text']]
-    return toxic.rename(columns={'comment_text': 'text'})
+# def load_jigsaw(path: str) -> pd.DataFrame:
+#     """
+#     Load Jigsaw Toxic Comment dataset and return toxic comments as 'text'.
+#     """
+#     df = pd.read_csv(path)
+#     toxic = df.loc[df['toxic'] == 1, ['comment_text']]
+#     return toxic.rename(columns={'comment_text': 'text'})
 
 def load_olid(path: str) -> pd.DataFrame:
     """
@@ -21,11 +21,17 @@ def load_olid(path: str) -> pd.DataFrame:
 def load_davidson(path: str) -> pd.DataFrame:
     """
     Load Davidson et al. dataset and return hate/offensive examples as 'text'.
+    The dataset uses a 'class' column:
+      0 = hate speech, 1 = offensive language, 2 = neither.
+    We keep classes 0 and 1.
     """
     df = pd.read_csv(path)
-    # label 1 = hate speech, 2 = offensive language
-    subset = df.loc[df['label'].isin([1, 2]), ['tweet']]
+    print("Davidson columns:", df.columns.tolist())
+    print("Class value counts:\n", df['class'].value_counts())
+    # filter rows where class is 0 (hate) or 1 (offensive)
+    subset = df.loc[df['class'].isin([0, 1]), ['tweet']]
     return subset.rename(columns={'tweet': 'text'})
+
 
 def merge_datasets(dfs: List[pd.DataFrame]) -> pd.DataFrame:
     """
@@ -44,21 +50,17 @@ def save_jsonl(df: pd.DataFrame, output_path: str) -> None:
     print(f"✔️ Saved {len(df)} records to {output_path!r}")
 
 def main():
-    # Define input dataset paths
-    jigsaw_path   = 'data/train.csv'
+    # jigsaw_path   = 'data/train.csv'
     olid_path     = 'data/olid-training-v1.0.tsv'
     davidson_path = 'data/davidson/dataset.csv'
     output_path   = 'data/raw_offensive.jsonl'
 
-    # Load individual datasets
-    jigsaw_df   = load_jigsaw(jigsaw_path)
+    # jigsaw_df   = load_jigsaw(jigsaw_path)
     olid_df     = load_olid(olid_path)
     davidson_df = load_davidson(davidson_path)
 
-    # Merge and dedupe
-    merged_df = merge_datasets([jigsaw_df, olid_df, davidson_df])
+    merged_df = merge_datasets([olid_df, davidson_df])
 
-    # Save combined corpus
     save_jsonl(merged_df, output_path)
 
 if __name__ == '__main__':

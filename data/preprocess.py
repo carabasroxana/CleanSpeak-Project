@@ -52,7 +52,7 @@ def save_jsonl(records: List[Dict[str, str]], output_path: str) -> None:
     print(f"✔️ Saved {len(records)} records to {output_path!r}")
 
 def main():
-    input_path = "data/raw_offensive.jsonl"
+    input_path = "data/dataset.jsonl"
     output_path = "data/for_annotation.jsonl"
 
     texts = load_raw_texts(input_path)
