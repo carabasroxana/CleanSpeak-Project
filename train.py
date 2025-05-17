@@ -74,30 +74,37 @@ class CorpusDataset(Dataset):
         }
 
 # ──────────────────────────────────────────────────────────────────────────────
+
 def train():
     # 1) Load model + tokenizer, move to device
     model, tokenizer = load_model_and_tokenizer()
     model.to(device)
 
     # 2) Prepare data
-    dataset  = CorpusDataset(DATA_PATH, tokenizer)
+    dataset    = CorpusDataset(DATA_PATH, tokenizer)
     dataloader = DataLoader(dataset, batch_size=BATCH_SIZE, shuffle=True)
 
     # 3) Optimizer & scheduler
-    optimizer = AdamW(model.parameters(), lr=LEARNING_RATE)
+    optimizer   = AdamW(model.parameters(), lr=LEARNING_RATE)
     total_steps = len(dataloader) * EPOCHS
-    scheduler = get_linear_schedule_with_warmup(
+    scheduler   = get_linear_schedule_with_warmup(
         optimizer,
         num_warmup_steps=WARMUP_STEPS,
         num_training_steps=total_steps
     )
 
-    # 4) Training loop
+    # 4) Training loop with debug prints and tqdm
     model.train()
     for epoch in range(1, EPOCHS + 1):
         epoch_loss = 0.0
 
-        for batch in tqdm(dataloader, desc=f"Epoch {epoch}/{EPOCHS}", unit="batch"):
+        for i, batch in enumerate(
+            tqdm(dataloader, desc=f"Epoch {epoch}/{EPOCHS}", unit="batch")
+        ):
+            # debug before first batch
+            if i == 0:
+                print("🔄 Starting first batch (this may take a bit to JIT the kernels)...")
+
             optimizer.zero_grad()
 
             input_ids      = batch["input_ids"].to(device)
@@ -113,6 +120,10 @@ def train():
             loss.backward()
             optimizer.step()
             scheduler.step()
+
+            # debug after first backward
+            if i == 0:
+                print("✅ First batch done—kernel compile complete. Moving on at full speed!")
 
             epoch_loss += loss.item()
 
