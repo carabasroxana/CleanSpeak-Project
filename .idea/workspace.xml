@@ -4,12 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2041ff45-61b3-4b5f-b1b6-8499554a18a8" name="Changes" comment="Adding progress bar for model training">
-      <change beforePath="$PROJECT_DIR$/.idea/CleanSpeak.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/CleanSpeak.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="2041ff45-61b3-4b5f-b1b6-8499554a18a8" name="Changes" comment="changing the template according to annotation json schema">
+      <change beforePath="$PROJECT_DIR$/.gitattributes" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/train.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/prepare_annotation.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/prepare_annotation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/evaluate_metrics.py" beforeDir="false" afterPath="$PROJECT_DIR$/evaluate_metrics.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/finetune_hf.py" beforeDir="false" afterPath="$PROJECT_DIR$/finetune_hf.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/final.pt" beforeDir="false" afterPath="$PROJECT_DIR$/model/final.pt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/serve.py" beforeDir="false" afterPath="$PROJECT_DIR$/serve.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/train_tune.py" beforeDir="false" afterPath="$PROJECT_DIR$/train_tune.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,12 +36,12 @@
     &quot;assignee&quot;: &quot;carabasroxana&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/carabasroxana/CleanSpeak-Project.git",
-    "accountId": "27da4474-6486-4d62-a6b3-e42c2542773a"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/carabasroxana/CleanSpeak-Project.git&quot;,
+    &quot;accountId&quot;: &quot;27da4474-6486-4d62-a6b3-e42c2542773a&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
 }</component>
@@ -63,6 +66,9 @@
     "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
     "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "ChangesTree.GroupingKeys": []
   }
 }]]></component>
   <component name="RecentsManager">
@@ -70,6 +76,11 @@
       <recent name="$PROJECT_DIR$/data" />
       <recent name="$PROJECT_DIR$" />
     </key>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="pip install absl-py" />
+    </option>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -92,7 +103,9 @@
       <workItem from="1747338371230" duration="1143000" />
       <workItem from="1747379586109" duration="2845000" />
       <workItem from="1747493056716" duration="10876000" />
-      <workItem from="1747586081777" duration="8229000" />
+      <workItem from="1747586081777" duration="16645000" />
+      <workItem from="1747738035713" duration="7966000" />
+      <workItem from="1747766168190" duration="13830000" />
     </task>
     <task id="LOCAL-00001" summary="Extract offensive examples">
       <option name="closed" value="true" />
@@ -238,11 +251,62 @@
       <option name="project" value="LOCAL" />
       <updated>1747513895068</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Making the training to run on gpu not cpu">
+      <option name="closed" value="true" />
+      <created>1747678803985</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1747678803985</updated>
+    </task>
+    <task id="LOCAL-00020" summary="HF Trainer script">
+      <option name="closed" value="true" />
+      <created>1747833728157</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1747833728157</updated>
+    </task>
+    <task id="LOCAL-00021" summary="generated batches from preparing anotation">
+      <option name="closed" value="true" />
+      <created>1747835824672</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1747835824672</updated>
+    </task>
+    <task id="LOCAL-00022" summary="new dependencies">
+      <option name="closed" value="true" />
+      <created>1747835902081</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1747835902081</updated>
+    </task>
+    <task id="LOCAL-00023" summary="changing the template according to annotation json schema">
+      <option name="closed" value="true" />
+      <created>1747835985257</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1747835985257</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Merge &amp; dedupe raw corpus" />
@@ -261,9 +325,16 @@
     <MESSAGE value="Changing label tag to key tag&#10;Added davidson corpus&#10;Resolving a small bug" />
     <MESSAGE value="Some small changing for fixing some errors" />
     <MESSAGE value="Adding progress bar for model training" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding progress bar for model training" />
+    <MESSAGE value="Making the training to run on gpu not cpu" />
+    <MESSAGE value="The final file from the model" />
+    <MESSAGE value="HF Trainer script" />
+    <MESSAGE value="generated batches from preparing anotation" />
+    <MESSAGE value="new dependencies" />
+    <MESSAGE value="changing the template according to annotation json schema" />
+    <option name="LAST_COMMIT_MESSAGE" value="changing the template according to annotation json schema" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/CleanSpeak$evaluate_metrics.coverage" NAME="evaluate_metrics Coverage Results" MODIFIED="1747494979696" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CleanSpeak_Project$evaluate_metrics.coverage" NAME="evaluate_metrics Coverage Results" MODIFIED="1747684227635" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

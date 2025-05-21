@@ -1,28 +1,43 @@
 from pathlib import Path
 from flask import Flask, request, jsonify
 import torch
+from transformers import T5ForConditionalGeneration, T5Tokenizer
 
-from model.architecture import load_model_and_tokenizer, format_input
+from model.architecture import load_model_and_tokenizer, format_input, EMOTION_TOKENS
 
-MODEL_DIR = Path("model")
+# ──────────────────────────────────────────────────────────────────────────────
+# Device setup (so you can move your model/tensors to GPU/MPS if available)
+if torch.backends.mps.is_available():
+    device = torch.device("mps")
+elif torch.cuda.is_available():
+    device = torch.device("cuda")
+else:
+    device = torch.device("cpu")
+
+MODEL_DIR  = Path("model")
 MODEL_FILE = MODEL_DIR / "final.pt"
-HOST = "0.0.0.0"
-PORT = 5000
+HOST       = "0.0.0.0"
+PORT       = 5000
 
 
 def load_model():
-    """
-    Load the fine-tuned model and tokenizer from disk.
+    # 1) Base T5
+    tokenizer = T5Tokenizer.from_pretrained("t5-base")
+    model     = T5ForConditionalGeneration.from_pretrained("t5-base")
 
-    Returns:
-        model (torch.nn.Module): The loaded T5 model.
-        tokenizer: The corresponding tokenizer.
-    """
-    model, tokenizer = load_model_and_tokenizer()
-    state_dict = torch.load(MODEL_FILE, map_location="cpu")
-    model.load_state_dict(state_dict)
+    # 2) Load checkpoint
+    state = torch.load(MODEL_FILE, map_location="cpu")
+    model.load_state_dict(state)
+
+    # 3) Add emotion tokens + resize
+    tokenizer.add_special_tokens({"additional_special_tokens": EMOTION_TOKENS})
+    model.resize_token_embeddings(len(tokenizer))
+
+    # 4) Move to CPU/GPU/MPS, set eval
+    model.to(device)
     model.eval()
     return model, tokenizer
+
 
 
 def create_app(model, tokenizer):
