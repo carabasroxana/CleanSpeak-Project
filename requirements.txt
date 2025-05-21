@@ -1,11 +1,13 @@
-torch>=1.13           # or the latest compatible with your CUDA/CPU
+torch>=1.13
 transformers>=4.25
-sentencepiece         # for T5Tokenizer
-datasets              # for load_metric (or use evaluate)
+sentencepiece
+datasets
 evaluate~=0.4.3
 flask~=3.1.1
 langdetect~=1.0.9
-praw                  # if you ever return to Reddit scraping
+praw
 
 pandas~=2.2.3
 tqdm~=4.67.1
+transformers>=4.30.0
+datasets>=2.11.0
