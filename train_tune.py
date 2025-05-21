@@ -1,4 +1,4 @@
-import argparse
+#import argparse
 import json
 from pathlib import Path
 
@@ -31,7 +31,7 @@ def main():
     for lr in args.lrs:
         print(f"🚀 Starting training with learning rate = {lr}")
         # train() returns training metrics or None; adjust train() accordingly
-        metrics = train(lr=lr)
+        metrics = train()
         print(f"✅ Finished lr={lr} -> metrics: {metrics}\n")
         results.append({"learning_rate": lr, "metrics": metrics})
 
