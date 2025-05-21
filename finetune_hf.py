@@ -17,9 +17,8 @@ def load_jsonl(path):
 
 
 def main():
-    train = load_jsonl("final_corpus.json")
+    train = load_jsonl("data/final_corpus_annotated.jsonl")
     dataset = Dataset.from_list(train).train_test_split(test_size=0.1)
-
     model_name = "t5-small"
     tok = AutoTokenizer.from_pretrained(model_name)
     max_len = 128
