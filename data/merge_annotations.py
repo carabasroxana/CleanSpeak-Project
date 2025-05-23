@@ -28,8 +28,8 @@ def save_merged(records: List[Dict[str, str]], output_path: str) -> None:
     print(f"✔️ Saved {len(records)} merged records to {output_path!r}")
 
 def main():
-    batch_dir = 'data/batches'
-    output_path = 'data/final_corpus.jsonl'
+    batch_dir = 'data/batches_auto'
+    output_path = 'data/final_corpus_annotated.jsonl'
 
     # Load all annotated batches
     records = load_batches(batch_dir)
