@@ -24,12 +24,13 @@ def main():
     max_len = 128
 
     def preprocess(ex):
-        inpt = tok(ex["src"], truncation=True, padding="max_length", max_length=max_len)
-        tgt = tok(ex["tgt"], truncation=True, padding="max_length", max_length=max_len)
+        inpt = tok(ex["text"], truncation=True, padding="max_length", max_length=max_len)
+        tgt = tok(ex["neutral_rewrite"], truncation=True, padding="max_length", max_length=max_len)
         inpt["labels"] = tgt["input_ids"]
         return inpt
 
-    tokenized = dataset.map(preprocess, batched=True, remove_columns=["src", "tgt"])
+    all_cols = dataset["train"].column_names
+    tokenized = dataset.map(preprocess, batched=True, remove_columns=all_cols)
 
     model = AutoModelForSeq2SeqLM.from_pretrained(model_name)
 
@@ -37,7 +38,7 @@ def main():
         output_dir="./polite-bot",
         per_device_train_batch_size=8,
         per_device_eval_batch_size=8,
-        evaluation_strategy="steps",
+        do_eval=True,
         eval_steps=500,
         logging_steps=100,
         save_steps=500,
@@ -45,7 +46,6 @@ def main():
         num_train_epochs=3,
         learning_rate=5e-5,
         weight_decay=0.01,
-        predict_with_generate=True,
     )
 
     trainer = Trainer(

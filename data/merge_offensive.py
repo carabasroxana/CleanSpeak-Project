@@ -28,18 +28,13 @@ def save_jsonl(df: pd.DataFrame, output_path: str) -> None:
 
 
 if __name__ == "__main__":
-    # Assume toxic, off, off_d are already loaded DataFrames
-    # toxic has column 'comment_text'; off/off_d have 'tweet'
     toxic = pd.read_csv('data/toxic_comments.csv')[['comment_text']].rename(columns={'comment_text': 'text'})
     off = pd.read_csv('data/olid_offensive.tsv', sep='\t')[['tweet']]
     off_d = pd.read_csv('data/davidson/dataset.csv')[['tweet']]
 
-    # Standardize column names
     off = rename_to_text(off, 'tweet')
     off_d = rename_to_text(off_d, 'tweet')
 
-    # Merge and dedupe
     merged_df = merge_and_dedupe([toxic, off, off_d])
 
-    # Write out
     save_jsonl(merged_df, 'data/raw_offensive.jsonl')
