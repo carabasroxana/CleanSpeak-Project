@@ -56,6 +56,8 @@ def main():
         tokenizer=tok,
     )
     trainer.train()
+    trainer.save_model("./polite-bot")
+    tok.save_pretrained("./polite-bot")
 
 
 if __name__ == "__main__":
