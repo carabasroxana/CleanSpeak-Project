@@ -36,3 +36,7 @@ def rewrite(req: RewriteRequest):
 
     polite = tokenizer.decode(out_ids[0], skip_special_tokens=True)
     return {"rewrite": polite}
+
+if __name__=="__main__":
+    import uvicorn
+    uvicorn.run("serve:app", host="0.0.0.0", port=8000, reload=True)
