@@ -31,10 +31,8 @@ def main():
     batch_dir = 'data/batches_auto'
     output_path = 'data/final_corpus_annotated.jsonl'
 
-    # Load all annotated batches
     records = load_batches(batch_dir)
 
-    # Save them into one merged file
     save_merged(records, output_path)
 
 if __name__ == '__main__':

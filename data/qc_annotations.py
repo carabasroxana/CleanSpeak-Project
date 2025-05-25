@@ -31,7 +31,6 @@ def save_chunks(chunks: List[List[Dict[str, str]]], output_dir: str) -> None:
         batch_file = out_path / f"batch_{idx}.jsonl"
         with batch_file.open('w', encoding='utf-8') as f:
             for rec in chunk:
-                # Only include the `text` field for annotation
                 f.write(json.dumps({'text': rec.get('text', '')}, ensure_ascii=False) + "\n")
         print(f"✔️  Saved {len(chunk)} records to {batch_file}")
 
@@ -40,11 +39,9 @@ def main():
     output_dir = "data/batches"
     chunk_size = 200
 
-    # Load and chunk records
     records = load_records(input_path)
     chunks = chunk_records(records, chunk_size)
 
-    # Save each chunk for annotation
     save_chunks(chunks, output_dir)
 
 if __name__ == "__main__":

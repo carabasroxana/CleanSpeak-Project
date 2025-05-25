@@ -48,7 +48,6 @@ def main():
     records = load_records(input_path)
     chunks = chunk_records(records, chunk_size)
 
-    # Save each chunk for annotation
     save_chunks(chunks, output_dir)
 
 if __name__ == "__main__":

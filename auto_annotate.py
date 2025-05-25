@@ -5,9 +5,9 @@ from transformers import pipeline
 offense_clf = pipeline(
     "zero-shot-classification",
     model="facebook/bart-large-mnli",
-    device=0  # or remove if you’re on CPU
+    device=0
 )
-emotion_clf = offense_clf  # reuse the same model
+emotion_clf = offense_clf
 
 rewriter = pipeline(
     "text2text-generation",
