@@ -1,7 +1,7 @@
 torch>=1.13
 transformers>=4.25
 sentencepiece
-datasets
+datasets~=3.6.0
 evaluate~=0.4.3
 flask~=3.1.1
 langdetect~=1.0.9
@@ -11,3 +11,9 @@ pandas~=2.2.3
 tqdm~=4.67.1
 transformers>=4.30.0
 datasets>=2.11.0
+
+uvicorn~=0.34.2
+fastapi~=0.115.12
+pydantic~=2.11.5
+requests~=2.32.3
+scikit-learn~=1.5.2
