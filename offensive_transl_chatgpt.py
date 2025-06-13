@@ -61,7 +61,7 @@ print(classification_report(y_test, y_pred_orig, digits=4))
 print("→ Accuracy:", accuracy_score(y_test, y_pred_orig))
 
 
-print("\n=== Fine-tuning T5-small on your tiny corpus ===")
+print("\n=== Fine-tuning T5-small on the tiny corpus ===")
 model_id = "t5-small"
 tok      = AutoTokenizer.from_pretrained(model_id)
 model    = AutoModelForSeq2SeqLM.from_pretrained(model_id)
